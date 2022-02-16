@@ -8,13 +8,15 @@ public class Gamemanager : MonoBehaviour
     public GameObject coin;
     public int score;
     public int goal;
+    public static int number;  //참고: https://dlemrcnd.tistory.com/8
+    public bool onetime = false; 
     public bool isCheck = false;
     public Transform left_bottom;
     public Transform right_top;
 
     void Place(GameObject ghost, GameObject coin)
     {
-    
+        // 랜덤한 좌표 값 생성
         float newX = Random.Range(-10f, 10f), newY = 0, newZ = Random.Range(-10f, 10f);
         float newA = Random.Range(-10f, 10f), newB = 0, newC = Random.Range(-10f, 10f);
 
@@ -27,21 +29,37 @@ public class Gamemanager : MonoBehaviour
     }
     void CheckClear()
     {
+        if (score >= goal)
+        {
+            isCheck = true;
+        }
         if (isCheck == true)
         {
-            Debug.Log("Clear");
+            if(onetime == false)
+            {
+                Debug.Log("Clear");
+            }
+            onetime = true;
+
         }
-        // 출처: https://namjuhyung.tistory.com/93
+
+        // 참고 : https://namjuhyung.tistory.com/93
     }
-    // Start is called before the first frame update
+    void RaiseScore(int number)
+    {
+        score = number;
+
+    }
+
     void Start()
     {
         Place(ghost, coin);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         CheckClear();
+        RaiseScore(number);
     }
 };
