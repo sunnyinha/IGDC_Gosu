@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            transform.Translate((float)(speed * Time.deltaTime), 0f, 0f);
+            transform.Translate((float)(speed * Time.deltaTime), 0f, 0f); //translate를 position으로 고치면 is kinematic 없이도 가능
         }
         if (Input.GetAxisRaw("Horizontal") < 0)
         {
@@ -38,11 +38,12 @@ public class Player : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision) //이건 충돌 시 자동 작동이라 update()에 넣을 필요 없음!
-    // rigidbody 필요! colider 필요! 물리 엔진 무시를 위해 Is Kinematic 설정...(안하면 공 충돌 충격으로 공중에 떠서 조작키가 제대로 작동 못해..)
+    // rigidbody 필요! colider 필요! 물리 엔진 무시를 위해 Is Kinematic 설정...(안하면 공 충돌 충격으로 회전축이 움직여 조작키가 제대로 작동 못해..)
     {
         if (collision.gameObject.CompareTag("Collectable")) // 태그 이름으로 오브젝트 언급 가능 참고: https://docs.unity3d.com/kr/2020.3/Manual/Tags.html
         {
             Gamemanager.number++; //외부 static 변수 사용시 클래스 이름 같이 언급 필요  참고:https://8bitscoding.github.io/unity/09/
+            Destroy(collision.gameObject);
         }
         if (collision.gameObject.CompareTag("Enermy"))
         {

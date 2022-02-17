@@ -7,7 +7,7 @@ public class Ghost : MonoBehaviour
     public Transform player;
     public float speed;
     
-    void ChaseTarget(Transform player)
+    protected void ChaseTarget(Transform player)
     {
         this.transform.LookAt(player);
         this.transform.position = Vector3.MoveTowards(this.transform.position, player.position, speed * Time.deltaTime);
@@ -23,6 +23,6 @@ public class Ghost : MonoBehaviour
     void Update()
     {
 
-        ChaseTarget(player);
+        
     }
 }

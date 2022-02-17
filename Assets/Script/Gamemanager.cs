@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Gamemanager : MonoBehaviour
 {
-    public GameObject ghost;
+    public GameObject chase;
+    public GameObject idiot;
     public GameObject coin;
+    public int coinCount;
+    public int chaseCount;
+    public int idiotCount;
     public int score;
     public int goal;
     public static int number;  //참고: https://dlemrcnd.tistory.com/8
@@ -13,6 +17,7 @@ public class Gamemanager : MonoBehaviour
     public bool isCheck = false;
     public Transform left_bottom;
     public Transform right_top;
+
 
     void Place(GameObject ghost, GameObject coin)
     {
@@ -51,9 +56,24 @@ public class Gamemanager : MonoBehaviour
 
     }
 
+    void Make(GameObject gameObject, int count)
+    {
+        for(int i=0; i<count; i++)
+        {
+            
+            right_top.position = new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
+            Instantiate(gameObject, right_top.position, right_top.rotation);
+            //참고: https://young-94.tistory.com/35
+        }
+    }
+
     void Start()
     {
-        Place(ghost, coin);
+        Place(chase, coin);
+        Place(idiot, coin);
+        Make(coin, coinCount);
+        Make(chase, chaseCount);
+        Make(idiot, idiotCount);
     }
 
 
@@ -61,5 +81,6 @@ public class Gamemanager : MonoBehaviour
     {
         CheckClear();
         RaiseScore(number);
+      
     }
 };

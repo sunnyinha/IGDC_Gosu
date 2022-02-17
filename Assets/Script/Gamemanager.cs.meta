@@ -3,7 +3,13 @@ guid: 6b001d0525cf8a94d85874bd0f59ab3c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - chase: {fileID: 1101930240835351460, guid: 341efea1cc5017c44962cbd8bb07defb, type: 3}
+  - idiot: {fileID: 5444124527665199089, guid: 8c1c7e1e915109747a4f193b6429439c, type: 3}
+  - coin: {fileID: 5410951225342715268, guid: f695975de82503a49af068ddde313129, type: 3}
+  - left_bottom: {instanceID: 0}
+  - right_top: {instanceID: 0}
+  - randomsite: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
